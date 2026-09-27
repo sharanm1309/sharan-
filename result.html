@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your Workout Plan - FitBuddy</title>
+<style>
+  body{font-family:'Segoe UI',Roboto,Arial,sans-serif;background:#111827;color:#fff;margin:0;padding:24px;}
+  .wrap{max-width:640px;margin:0 auto;}
+  .card{background:#1f2937;padding:22px;border-radius:14px;margin-bottom:18px;}
+  h1{font-size:20px;} h2{font-size:16px;}
+  pre{white-space:pre-wrap;font-family:inherit;font-size:14px;line-height:1.6;background:#111827;padding:14px;border-radius:8px;}
+  .tip{background:linear-gradient(135deg,#22c55e,#0ea5a4);padding:14px;border-radius:8px;}
+  textarea{width:100%;padding:9px;border-radius:8px;border:1px solid #374151;background:#111827;color:#fff;min-height:70px;}
+  button{margin-top:12px;padding:10px 16px;background:#3b82f6;color:#fff;border:none;border-radius:8px;cursor:pointer;}
+  .confirm{background:#064e3b;color:#6ee7b7;padding:10px;border-radius:8px;margin-bottom:12px;}
+  a{color:#93c5fd;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    {% if updated %}<div class="confirm">✅ Your plan has been updated based on your feedback!</div>{% endif %}
+    <h1>🏆 Your Personalized Workout Plan</h1>
+    <p><b>Name:</b> {{ username }} &nbsp; <b>User ID:</b> {{ user_id }} &nbsp; <b>Age:</b> {{ age }}<br>
+       <b>Weight:</b> {{ weight }} kg &nbsp; <b>Goal:</b> {{ goal }} &nbsp; <b>Intensity:</b> {{ intensity }}</p>
+    <pre>{{ workout_plan }}</pre>
+  </div>
+  <div class="card">
+    <h2>💡 Nutrition Tip</h2>
+    <div class="tip">{{ nutrition_tip }}</div>
+  </div>
+  <div class="card">
+    <h2>📝 Share Your Feedback</h2>
+    <form action="/submit-feedback" method="post">
+      <input type="hidden" name="user_id" value="{{ user_id }}">
+      <input type="hidden" name="username" value="{{ username }}">
+      <input type="hidden" name="age" value="{{ age }}">
+      <input type="hidden" name="weight" value="{{ weight }}">
+      <input type="hidden" name="goal" value="{{ goal }}">
+      <input type="hidden" name="intensity" value="{{ intensity }}">
+      <textarea name="feedback" placeholder="Let us know how we can improve your plan..."></textarea>
+      <br><button type="submit">Submit Feedback</button>
+    </form>
+  </div>
+  <p><a href="/">&larr; Back to form</a> &nbsp;|&nbsp; <a href="/view-all-users">Admin view &rarr;</a></p>
+</div>
+</body>
+</html>
