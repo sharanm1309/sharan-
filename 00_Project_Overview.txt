@@ -1,0 +1,55 @@
+FitBuddy - AI Fitness Plan Generator using Gemini Models
+=========================================================
+
+PROJECT DESCRIPTION
+FitBuddy is a web-based application that uses AI to generate personalized workout plans and nutrition tips based on a user's fitness goals, such as weight loss, muscle gain, or general wellness. Built with FastAPI and integrated with Google's Gemini AI models, FitBuddy simplifies the process of creating structured and effective fitness routines.
+
+The application takes in user information (age, weight, goal, preferred workout intensity) and generates a customized 7-day fitness plan. Users can also submit feedback to update and refine their plan using AI. A complementary nutrition or recovery tip is also provided based on their selected goal.
+
+With a clean user interface and database support via SQLite, FitBuddy ensures each user's data and generated plan are stored and accessible. It offers both API endpoints and an interactive HTML interface.
+
+SCENARIOS
+Scenario 1: A user inputs name, age, weight, fitness goal (e.g. "weight loss" or "muscle gain") and preferred workout intensity ("high", "medium" or "low") to receive a personalized 7-day workout plan.
+
+Scenario 2: A user submits feedback on their existing plan (e.g. "more focus on cardio" or "include more rest days"). The system regenerates an updated plan.
+
+Scenario 3: A user requests a nutrition or recovery tip based on their selected fitness goal (e.g. "Include protein in your post-workout meal" for muscle gain).
+
+Scenario 4: An admin or coach views all registered users and their workout plans through a dedicated dashboard, comparing original and updated plans.
+
+TECHNICAL ARCHITECTURE (flow)
+User (Browser)
+  -> FastAPI Backend (app/main.py)
+       -> HTML Templating (Jinja2 + CSS): index.html (form page)
+       -> Workout Logic (routes.py + AI): result.html (plan page)
+            -> Gemini 1.5 Pro & Gemini Flash (Google Generative AI)
+            -> AI Plan/Nutrition Generator (updated_plan.py)
+            -> SQLite + SQLAlchemy ORM (fitbuddy.db): users table, plans table
+       -> Admin Panel /view-all-users: all_users.html
+
+PRE-REQUISITES
+1. FastAPI framework knowledge
+2. Gemini API familiarity (Google Generative AI documentation)
+3. HTML, CSS and Jinja2 template skills
+4. Python programming proficiency
+5. Version control with Git
+6. SQLAlchemy and SQLite basics
+7. Environment setup (pip, virtualenv or conda)
+8. Uvicorn ASGI server
+
+PROJECT WORKFLOW
+Epic 1. Model Selection and Architecture
+  1.1 Research and Select the Appropriate Generative AI Model
+  1.2 Define the Architecture of the Application
+  1.3 Set Up the Development Environment
+Epic 2. Core Functionalities Development
+  2.1 Develop the Core Functionalities
+  2.2 Implement the FastAPI Backend to Manage Routing and User Input Processing
+Epic 3. routes.py Development
+  3.1 Writing the Main Application Logic in routes.py
+Epic 4. Frontend Development
+  4.1 Designing and Developing the User Interface
+  4.2 Creating Dynamic Templates with FastAPI's Jinja2
+Epic 5. Deployment
+  5.1 Preparing the Application for Local Deployment
+  5.2 Testing and Verifying Local Deployment
